@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Salin Otomatis & Tutup</title>
+  <title>Salin Otomatis</title>
   <script>
     function getParameterByName(name) {
       const url = new URL(window.location.href);
@@ -10,7 +10,10 @@
     }
 
     function salinTeks(teks) {
-      if (!teks) return;
+      if (!teks) {
+        alert("Teks tidak ditemukan di URL!");
+        return;
+      }
 
       const tempInput = document.createElement("textarea");
       tempInput.value = teks;
@@ -19,7 +22,8 @@
       document.execCommand("copy");
       document.body.removeChild(tempInput);
 
-      // Coba tutup tab
+      // Setelah alert ditutup, tutup tab
+      alert(`Teks berhasil disalin: "${teks}"`);
       window.close();
     }
 
@@ -30,6 +34,6 @@
   </script>
 </head>
 <body>
-  <p>Menyalin teks dan menutup tab...</p>
+  <p>Menyalin teks dari URL...</p>
 </body>
 </html>
