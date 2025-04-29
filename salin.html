@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Salin Otomatis & Tutup</title>
+  <script>
+    function getParameterByName(name) {
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name);
+    }
+
+    function salinTeks(teks) {
+      if (!teks) return;
+
+      const tempInput = document.createElement("textarea");
+      tempInput.value = teks;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
+
+      // Coba tutup tab
+      window.close();
+    }
+
+    window.onload = function() {
+      const teks = getParameterByName("id");
+      salinTeks(teks);
+    }
+  </script>
+</head>
+<body>
+  <p>Menyalin teks dan menutup tab...</p>
+</body>
+</html>
