@@ -15,16 +15,12 @@
         return;
       }
 
-      const tempInput = document.createElement("textarea");
-      tempInput.value = teks;
-      document.body.appendChild(tempInput);
-      tempInput.select();
-      document.execCommand("copy");
-      document.body.removeChild(tempInput);
-
-      // Setelah alert ditutup, tutup tab
-      alert(`Teks berhasil disalin: "${teks}"`);
-      window.close();
+      navigator.clipboard.writeText(teks).then(function() {
+        alert(`Teks berhasil disalin: "${teks}"`);
+        window.close(); // Hanya berfungsi jika tab dibuka via window.open()
+      }).catch(function(err) {
+        alert("Gagal menyalin teks: " + err);
+      });
     }
 
     window.onload = function() {
